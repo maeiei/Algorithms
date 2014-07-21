@@ -2,7 +2,7 @@ package com.maeiei.dynamic_programming;
 
 public class AssemblyLine {
 
-	int[] lineOne;
+	int[] lineOne; 
 	int[] lineTwo;
 
 	int[][] costBetweenArray;
