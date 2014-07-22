@@ -2,6 +2,25 @@ package com.maeiei.red_black_trees;
 
 public class RedBlackNode {
 
+	public static final boolean RED = true;
+	public static final boolean BLACK = false;
+	
+	public RedBlackNode() {
+		
+		this.value = 0;
+		this.color = BLACK;
+	}
+
+	
+	public RedBlackNode(int value) {
+		
+		this.value = value;
+		this.color = BLACK;
+	}
+	
+
+	private int value;
+	
 	private RedBlackNode right;
 
 	private RedBlackNode left;
@@ -40,5 +59,41 @@ public class RedBlackNode {
 
 	public void setColor(boolean color) {
 		this.color = color;
+	}
+
+	public boolean isRed() {
+		return color == RED;
+	}
+
+	public boolean isBlack() {
+		return color == BLACK;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public RedBlackNode getNullNode() {
+		return RedBlackNullNode.getInstance();
+	}
+}
+class RedBlackNullNode extends RedBlackNode {
+	private static RedBlackNullNode NULLNODE = null;
+	
+	public static RedBlackNullNode getInstance() {
+		if (NULLNODE == null) {
+			NULLNODE = new RedBlackNullNode();
+		}
+		return NULLNODE;
+	}
+	private RedBlackNullNode(){
+		super(0);
+		this.setLeft(null);
+		this.setRight(null);
+		this.setParent(null);
 	}
 }
