@@ -7,6 +7,8 @@ public class RedBlackTree {
 
 	private RedBlackNode root;
 	
+	public static final RedBlackNode NULLNODE = RedBlackNullNode.getInstance();
+	
 	private List<Integer> resultList = new ArrayList<Integer>();
 
 	public RedBlackTree(RedBlackNode root) {
@@ -16,9 +18,9 @@ public class RedBlackTree {
 	}
 
 	public void insert(RedBlackNode node) {
-		RedBlackNode y = RedBlackNullNode.getInstance();
+		RedBlackNode y = NULLNODE;
 		RedBlackNode x = root;
-		while (x != RedBlackNullNode.getInstance()) {
+		while (x != NULLNODE) {
 			y = x;
 			if (node.getValue() < x.getValue())
 				x = x.getLeft();
@@ -26,16 +28,16 @@ public class RedBlackTree {
 				x = x.getRight();
 		}
 		node.setParent(y);
-		if (y == RedBlackNullNode.getInstance())
+		if (y == NULLNODE)
 			root = node;
 		else if (node.getValue() < y.getValue())
 			y.setLeft(node);
 		else
 			y.setRight(node);
 
-		node.setParent(RedBlackNullNode.getInstance());
-		node.setLeft(RedBlackNullNode.getInstance());
-		node.setRight(RedBlackNullNode.getInstance());
+		node.setParent(NULLNODE);
+		node.setLeft(NULLNODE);
+		node.setRight(NULLNODE);
 		node.setColor(RedBlackNode.RED);
 		insertFixup(node);
 	}
@@ -48,9 +50,12 @@ public class RedBlackTree {
 		printTree(root);
 		return resultList;
 	}
+
 	public void printTree(RedBlackNode node) {
-		printTree(node.getLeft());
-		resultList.add(node.getValue());
-		printTree(node.getRight());
+		if(node != NULLNODE){
+			printTree(node.getLeft());
+			resultList.add(node.getValue());
+			printTree(node.getRight());
+		}
 	}
 }

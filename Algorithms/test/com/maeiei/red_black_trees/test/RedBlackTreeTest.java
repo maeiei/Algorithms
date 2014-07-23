@@ -22,5 +22,8 @@ public class RedBlackTreeTest {
 		for (int i = 1; i < treeList.size(); i++) {
 			Assert.assertTrue(treeList.get(i - 1) <= treeList.get(i));
 		}
+		for(int i : treeList){
+			System.out.println(i);
+		}
 	}
 }
